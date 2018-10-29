@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cigna Assignment</title>
+       	<meta charset="UTF-8" />
+	      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="id=edge">
+
+
+      <style>
+       /*  body {
+            margin: 50px;
+          }
+
+          .my-container {
+            border: 1px solid green;
+          }
+
+          .my-row {
+            border:3px solid red;
+            height:300px;
+          }
+
+          .my-col {
+            border: 3px dotted blue;
+          }
+
+          .top-buffer { margin-top:100px; }
+*/
+
+      </style>
+ 
+    </head>
+
+    <body>
+ 
+
+
+       <div class="container container-fluid top-buffer" >
+          <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+              <a href="#" class="navbar-brand">Cigna</a>
+              <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="#navbarMenu">
+               <ul class="navbar-nav mr-auto">
+                  
+               </ul>
+             </div>
+            </nav>  
+         <div>
+            <form>
+                <div class="form-group">
+                  <label for="sel1">Select Cigna Post preferences:</label>
+                  <select class="form-control" onChange=RepullData() id="sel1">
+                    <option value="all">All Posts</option>
+                    <option value="odd">Odd Posts</option>
+                    <option value="even">Even Posts</option>
+                  </select>
+                </div>
+              </form>
+         </div>
+
+          <div class="row  justify-content-center my-row">
+           <div class="my-col col-xs-12 order-md-2 col-lg-8 order-lg-1" >    
+                   <span style="text-align:center"><h3>Cigna Excercise: Pull Posts from end point.</h3></span>
+                   <ul id="posts"></ul>
+
+            </div>
+            <div class="my-col my-col col-xs-12 order-md-1 col-lg-4 order-lg-2"> 
+                    <img  src="http://www.alivint.com/wp-content/uploads/2016/03/cigna-logo.jpg" class="img-fluid" alt="Responsive image">
+              </div>
+          </div>         
+       </div>
+
+
+  <!-- /.container-fluid -->
+
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.css"/>
+     <script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js">  </script>
+   
+</body>
+<script type="text/javascript">
+
+
+$(function(){ 
+  var $posts = $('#posts');
+  var arrayReturn = [];
+        $.ajax({
+            url: "http://jsonplaceholder.typicode.com/posts",
+            async: false,
+            dataType: 'json',
+            success: function (posts) {
+              console.log('success', posts);
+              $.each(posts, function(i, post) {                   
+                      $posts.append('<br/><br/><b>ID:</b> '+post.id+'   <b>User ID:  </b>'+post.userId+'   <br/><b>Title:</b>   '+post.title+' <br/><b>Post:   </b>'+post.body);
+
+              });
+            },  
+            error: function(){
+                  alert('error loading orders');
+            }
+        });
+});
+
+
+  </script>
+</html>
